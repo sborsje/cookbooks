@@ -15,6 +15,21 @@ service "gmetad" do
   action :stop
 end
 
+execute "Move old ganglia webfrontend" do
+  command "mv /usr/share/ganglia-webfrontend /usr/share/ganglia-webfrontend-old"
+end
+
+remote_file "/tmp/ganglia-web2.tar.gz"  do
+  source "ganglia-web2.tar.gz"
+  mode 0755
+  owner "root"
+  group "root"
+end
+
+execute "Untar and move ganglia web2 frontend" do
+  command "tar -xzf /tmp/ganglia-web2.tar.gz && mv /tmp/ganglia-web2 /usr/share/ganglia-webfrontend"
+end
+
 template "/etc/ganglia/gmetad.conf" do
   mode '644'
   source "gmetad.conf.erb"
@@ -113,7 +128,7 @@ mount node[:ganglia][:origina_datadir] do
   options "bind,rw"
   action :enable
 end
-  
+
 service "gmetad" do
   supports :status => false, :restart => true
   action [ :enable, :start ]
@@ -123,3 +138,4 @@ service "apache2" do
   supports :status => true, :restart => true
   action :restart
 end
+
