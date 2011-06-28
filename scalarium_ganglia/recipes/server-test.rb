@@ -37,7 +37,7 @@ execute "Untar ganglia web2 frontend" do
 end
 
 execute "Make install ganglia web2 frontend" do
-  command "cd gweb-2.1.2 && make install"
+  command "cd /tmp/gweb-2.1.2 && make install"
 end
 
 template "/etc/ganglia/gmetad.conf" do
