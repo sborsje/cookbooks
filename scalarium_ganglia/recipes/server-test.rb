@@ -19,7 +19,7 @@ execute "Move old ganglia webfrontend" do
   command "mv /usr/share/ganglia-webfrontend /usr/share/ganglia-webfrontend-old"
 end
 
-remote_file "/tmp/ganglia-web2.tar.gz"  do
+cookbook_file "/tmp/ganglia-web2.tar.gz"  do
   source "ganglia-web2.tar.gz"
   mode 0755
   owner "root"
@@ -27,7 +27,7 @@ remote_file "/tmp/ganglia-web2.tar.gz"  do
 end
 
 execute "Untar and move ganglia web2 frontend" do
-  command "tar -xzf /tmp/ganglia-web2.tar.gz && mkdir /usr/share/ganglia-webfrontend && mv /tmp/ganglia-web2 /usr/share/ganglia-webfrontend"
+  command "tar -xzf /tmp/ganglia-web2.tar.gz && mkdir /usr/share/ganglia-webfrontend && mv /tmp/ganglia-web2/* /usr/share/ganglia-webfrontend"
 end
 
 template "/etc/ganglia/gmetad.conf" do
@@ -36,42 +36,42 @@ template "/etc/ganglia/gmetad.conf" do
   variables :cluster_name => node[:scalarium][:cluster][:name]
 end
 
-remote_file "/usr/share/ganglia-webfrontend/graph.d/mysql_query_report.php" do
+cookbook_file "/usr/share/ganglia-webfrontend/graph.d/mysql_query_report.php" do
   source "mysql_query_report.php"
   mode "0644"
 end
 
-remote_file "/usr/share/ganglia-webfrontend/graph.d/apache_report.php" do
+cookbook_file "/usr/share/ganglia-webfrontend/graph.d/apache_report.php" do
   source "apache_report.php"
   mode "0644"
 end
 
-remote_file "/usr/share/ganglia-webfrontend/graph.d/apache_worker_report.php" do
+cookbook_file "/usr/share/ganglia-webfrontend/graph.d/apache_worker_report.php" do
   source "apache_worker_report.php"
   mode "0644"
 end
 
-remote_file "/usr/share/ganglia-webfrontend/graph.d/passenger_memory_stats_report.php" do
+cookbook_file "/usr/share/ganglia-webfrontend/graph.d/passenger_memory_stats_report.php" do
   source "passenger_memory_stats_report.php"
   mode "0644"
 end
 
-remote_file "/usr/share/ganglia-webfrontend/graph.d/passenger_status_report.php" do
+cookbook_file "/usr/share/ganglia-webfrontend/graph.d/passenger_status_report.php" do
   source "passenger_status_report.php"
   mode "0644"
 end
 
-remote_file "/usr/share/ganglia-webfrontend/graph.d/haproxy_requests_report.php" do
+cookbook_file "/usr/share/ganglia-webfrontend/graph.d/haproxy_requests_report.php" do
   source "haproxy_requests_report.php"
   mode "0644"
 end
 
-remote_file "/usr/share/ganglia-webfrontend/graph.d/nginx_status_report.php" do
+cookbook_file "/usr/share/ganglia-webfrontend/graph.d/nginx_status_report.php" do
   source "nginx_status_report.php"
   mode "0644"
 end
 
-remote_file "/usr/share/ganglia-webfrontend/graph.d/apache_response_time_report.php" do
+cookbook_file "/usr/share/ganglia-webfrontend/graph.d/apache_response_time_report.php" do
   source "apache_response_time_report.php"
   mode "0644"
 end
@@ -81,7 +81,7 @@ template "/usr/share/ganglia-webfrontend/conf.php" do
   mode "0644"
 end
 
-remote_file "/tmp/scalarium-ganglia-theme.tar.gz"  do
+cookbook_file "/tmp/scalarium-ganglia-theme.tar.gz"  do
   source "scalarium.tar.gz"
   mode 0755
   owner "root"
