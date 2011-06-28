@@ -129,14 +129,14 @@ end
 
 Chef::Log.info("Bindmounting RRDS directories for Ganglia")
 
-mount node[:ganglia][:origina_datadir] do
+mount node[:ganglia][:original_datadir] do
   device node[:ganglia][:datadir]
   fstype "none"
   options "bind,rw"
   action :mount
 end
 
-mount node[:ganglia][:origina_datadir] do
+mount node[:ganglia][:original_datadir] do
   device node[:ganglia][:datadir]
   fstype "none"
   options "bind,rw"
