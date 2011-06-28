@@ -117,7 +117,7 @@ execute "fix permissions on ganglia rrds directory" do
 end
 
 execute "fix permissions on ganglia dwoo directory" do
-  command "chown -R #{node[:ganglia][:rrds_user]}:#{node[:ganglia][:user]} #{node[:ganglia][:datadir]}/dwoo && chmod -R 777 #{node[:ganglia][:rrds_user]}:#{node[:ganglia][:user]} #{node[:ganglia][:datadir]}/dwoo"
+  command "chown -R #{node[:ganglia][:rrds_user]}:#{node[:ganglia][:user]} #{node[:ganglia][:datadir]}/dwoo && chmod -R 777 #{node[:ganglia][:datadir]}/dwoo"
 end
 
 
