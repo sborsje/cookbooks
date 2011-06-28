@@ -25,19 +25,19 @@ execute "Move old ganglia webfrontend" do
   command "mv /usr/share/ganglia-webfrontend /usr/share/ganglia-webfrontend-old"
 end
 
-cookbook_file "/tmp/ganglia-web2.tar.gz"  do
-  source "ganglia-web2.tar.gz"
+cookbook_file "/tmp/gweb-2.1.2.tar.gz"  do
+  source "gweb-2.1.2.tar.gz"
   mode 0755
   owner "root"
   group "root"
 end
 
 execute "Untar ganglia web2 frontend" do
-  command "tar -xzf /tmp/ganglia-web2.tar.gz"
+  command "tar -xzf /tmp/gweb-2.1.2.tar.gz"
 end
 
-execute "Move ganglia web2 frontend" do
-  command "mkdir /usr/share/ganglia-webfrontend && mv /tmp/ganglia-web2/* /usr/share/ganglia-webfrontend/"
+execute "Make install ganglia web2 frontend" do
+  command "cd gweb-2.1.2 && make install"
 end
 
 template "/etc/ganglia/gmetad.conf" do
