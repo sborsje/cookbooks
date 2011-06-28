@@ -7,6 +7,12 @@ directory "#{node[:ganglia][:datadir]}/rrds" do
   mode "0775"
 end
 
+directory "#{node[:ganglia][:datadir]}/dwoo" do
+  recursive true
+  action :create
+  mode "0777"
+end
+
 package "ganglia-webfrontend"
 package "gmetad"
 
