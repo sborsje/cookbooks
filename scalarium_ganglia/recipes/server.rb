@@ -27,7 +27,7 @@ remote_file "/tmp/ganglia-web2.tar.gz"  do
 end
 
 execute "Untar and move ganglia web2 frontend" do
-  command "tar -xzf /tmp/ganglia-web2.tar.gz && mv /tmp/ganglia-web2 /usr/share/ganglia-webfrontend"
+  command "tar -xzf /tmp/ganglia-web2.tar.gz && mkdir /usr/share/ganglia-webfrontend && mv /tmp/ganglia-web2 /usr/share/ganglia-webfrontend"
 end
 
 template "/etc/ganglia/gmetad.conf" do
