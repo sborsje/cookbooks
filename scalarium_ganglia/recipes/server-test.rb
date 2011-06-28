@@ -26,8 +26,12 @@ cookbook_file "/tmp/ganglia-web2.tar.gz"  do
   group "root"
 end
 
-execute "Untar and move ganglia web2 frontend" do
-  command "tar -xzf /tmp/ganglia-web2.tar.gz && mkdir /usr/share/ganglia-webfrontend && mv /tmp/ganglia-web2/* /usr/share/ganglia-webfrontend"
+execute "Untar ganglia web2 frontend" do
+  command "tar -xzf /tmp/ganglia-web2.tar.gz"
+end
+
+execute "Move ganglia web2 frontend" do
+  command "mkdir /usr/share/ganglia-webfrontend && mv /tmp/ganglia-web2/* /usr/share/ganglia-webfrontend/"
 end
 
 template "/etc/ganglia/gmetad.conf" do
