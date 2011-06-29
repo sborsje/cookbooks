@@ -123,9 +123,12 @@ execute "fix permissions on ganglia rrds directory" do
 end
 
 execute "fix permissions on ganglia dwoo directory" do
-  command "chown -R #{node[:ganglia][:rrds_user]}:#{node[:ganglia][:user]} #{node[:ganglia][:datadir]}/dwoo && chmod -R 777 #{node[:ganglia][:datadir]}/dwoo"
+  command "chown -R www-data:www-data #{node[:ganglia][:datadir]}/dwoo && chmod -R 777 #{node[:ganglia][:datadir]}/dwoo"
 end
 
+execute "fix permissions on ganglia conf directory" do
+  command "chown -R www-data:www-data #{node[:ganglia][:datadir]}/conf && chmod -R 777 #{node[:ganglia][:datadir]}/conf"
+end
 
 Chef::Log.info("Bindmounting RRDS directories for Ganglia")
 
